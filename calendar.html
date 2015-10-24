@@ -24,6 +24,11 @@
 			width:150px;
 			height:25px;
 		}
+		.output{
+			font-size:140%;
+			margin:2px;
+			text-align:center;
+		}
 	</style>
 </head>
 <body>
@@ -39,15 +44,18 @@
 		<td>firstDay:</td><td> <input type="text" name="firstDay" value = "" placeholder="1"></td>
 	</tr>
 	<tr>
-		<td>yearRange:</td><td> <input type="text" name = "yearRange" value = "" placeholder="2010:2016" ></td>
+		<td>yearRange:</td><td> <input type="text" name = "yearRange" value = "" placeholder="2010:2016"></td>
 	</tr>
 	<tr>
-		<td>weekHeader:</td><td> <input type="text" name = "weekHeader" value = "" placeholder="������"></td>
+		<td>weekHeader:</td><td> <input type="text" name = "weekHeader" value = "" placeholder="Недели"></td>
 	</tr>
 	</table>
+	<div class='output'>
+	
+	</div>
 	<hr>
 	<div class='btn'>	
-	<input type="button" value = "���������">
+	<input type="button" value = "Применить">
 	</div>
 </div>
 <div id="datepicker"></div>
@@ -65,7 +73,8 @@
 		var currentDate = $( "#datepicker" ).datepicker( "getDate" );
 		var todayDate = new Date();
 		var obj = {};
-		
+		var diffDay = Math.floor((todayDate - currentDate)/24/60/60/1000);
+		$(".output").html("Кол-во дней между датами: "+diffDay);
 		// Get setting for datepicker
 		var checkElem = $("input[type='checkbox']");
 		var prop, propValue;
