@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="js/jquery.min.js"></script>
+	<style>
+		.main {
+			border:1px solid grey;
+			width:900px;
+			height:80px;
+			text-align:center;
+			font-size:18pt;
+			padding:10px;
+			border-radius: 5px 5px 5px 5px;
+		}
+		.btn {
+			width:439px;
+			float:left;
+			font-size:200%;
+			font-weight:bold;
+			text-align:center;
+			cursor:pointer;
+			background:#DBDBDB;
+			box-shadow:0 0 10px rgba(0,0,0,0.5);
+			margin:10px 0px 0px 0px;
+			border-radius: 20px 20px 20px 20px;
+		}
+		.btn:last-child {
+			margin-left:20px;
+			background: #000;
+			color:white;
+		}
+		.btn:hover{
+			background:#FF8716;
+		}
+		.code {
+			color:navy;
+		}
+		.error {
+			border:1px solid #7F0000;
+			background:#FF5328;
+		}
+		.correct {
+			border:1px solid #007F0E;
+			background:#4CFF00;
+		}
+	</style>
+</head>
+<body>
+<div class="main">
+	texttext
+</div>
+<div>
+	<div class="btn">Yes</div>
+	<div class="btn">No</div>
+</div>
+<script>	
+ $(document).ready(function(){
+	var i = 0,
+	    answer,
+		correct = 0;
+	$('.main').html(arrQuest[i]);
+	$('.btn').on('click',function(){
+		answer = $(this).text() == 'Yes' ? 1 : 0; 
+		if (answer != correctAnsver[i]) {
+			$('.main').addClass('error');
+		} else {
+			$('.main').addClass('correct');
+			correct++;
+		}
+		$('.btn').hide();
+		$('.main').fadeOut(1000,function(){
+			if (i < 19 ) {
+				$('.main').html(arrQuest[++i]).removeClass().addClass('main').show();
+				$('.btn').show();
+			} else {
+				$('.main').html('Правильных ответов: '+ correct +' из 20.').removeClass().addClass('main code');
+				if (correct > 18) {
+					$('.main').addClass('correct').show();
+					setTimeout(function(){
+						$('.main').html(largeStr).css('height','auto');
+					},2000);
+				} else {
+					$('.main').addClass('error').show();
+				}	
+			}	
+		});	
+	})
+ })
+ 
+ function getBynary(num) {
+	var arr_1_0 = []
+	while(num > 0) {
+		arr_1_0.push(num % 2);
+		num = Math.floor(num / 2);
+	}
+	return arr_1_0.reverse();
+}	
+ 
+ //var correctAnsver = [1,0,1,0,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,1];
+ var correctAnsver = getBynary(655125).reverse();
+ var arrQuest = ['jQuery изначально назывался JSelect.',
+				 'jQuery — фреймворк JavaScript, фокусирующийся на взаимодействии JavaScript и HTML.',
+				 'Код: <b class="code"> $(function(){//do somthing});</b> выполнится стразу после загрузки всего документа.',
+				 'Код: <b class="code">$("div.wrapper");</b> выберет все элементы <b class="code">div</b> и все эелементы с классом <b class="code">wrapper</b>.',
+				 'Код: <b class="code">$("article h2")</b> выберет тоже, что и код: <b class="code">$("article").find("h2")</b>.',
+				 'Код: <b class="code">$("h1 + h2")</b> выберет все элементы <b class="code">h1</b> и <b class="code">h2</b>.',
+				 'Такой код: <b class="code">$("article > *")</b> содержит ощибку.',
+				 'Код: <b class="code">$("p").parents("div")</b> выберет элемент <b class="code">div</b>, который является родителем для элемента <b class="code">p</b>.',
+				 'В селектораях специальные символы необходимо экранировать, используя сумволы <b class="code">"\\\\"</b>.',
+				 'Код: <b class="code">$("#my").toggleClass("active")</b> добавит класс к элементу <b class="code">#my</b>, если такого класса у него(элемента) нет.',
+				 'Код: <b class="code">$("#my").hasClass("active")</b> проверяет наличие класса у элемента <b class="code">#my</b>.',
+				 'Лозунг jQuery звучит как - "The Write Less, Do More"',
+				 'Для отключения элементов формы и для проверки(изменения) состояния чекбоксов рекомендуют всегда использовать функцию <b class="code">prop()</b>.',
+				 'Код: <b class="code">$("#menu li a").trigger("click")</b> эмулирует(вызывает) событие <b class="code">click</b> у ссылки.',
+				 'Код: <b class="code">$(".class").unbind("click");</b> отключает обработчик события.',
+				 'Код: <b class="code">$("img").hide("fast");</b> выполнится быстрее, чем <b class="code">$("img").hide(300);</b>.',
+				 'Функция <b class="code">stop()</b> позволяет остановить текущую анимацию, а так же почистить очередь анимации.',
+				 'Метод: <b class="code">before(content)</b> вставляет контент перед первым элементом из выборки.',
+				 'Методы: <b class="code">append(content)</b> и <b class="code">appendTo(element)</b> выполняют одинаковое действие (вставляют контент в конец каждого элемента из выборки).',
+				 'Метод: <b class="code">clone(withDataAndEvents)</b> клонирует выбранные элементы, для дальнейшей вставки копий назад в DOM.']
+				 
+
+var largeStr  =	'Храму был нужен новый монах, и два потенциальных адепта претендовали на это место. Мастер велел монаху провести собеседование с обоими. В тот же вечер монах доложил: «Они были полностью равны во всех отношениях — возраст, вес, внешность, манеры, обращение с мечом и предпочтения относительно кофеиносодержащих напитков. Тогда я дал им одну и ту же логическую задачу; один из них решил ее, второй — нет.»Тогда мастер велел монаху отвести его в комнаты, где проводились собеседования. Вначале они отправились в комнату кандидата, который не справился с задачей. На доске еще оставались его наброски к задаче: болезненно аккуратные цифры выстроились в ровные строчки и столбики. Мастер быстро нашел ошибку в рассуждениях кандидата и сказал «Вот ростки гороха, пытающиеся пробиться через зимний снег. Если мы взрастим их, весной у нас будет славный обед.»Затем они перешли в комнату кандидата, который решил задачу. Его записи тоже оставались на доске, расползаясь по ней без заметного порядка. Поспешно нацарапанные каракули вились зигзагами, иногда наползая друг на друга — паутина ахинеи. Мастер покачал головой: «Ты говоришь, что здесь душистый укроп и лимонная трава, но я не могу найти их среди сорняков.»';				 
+</script>	
+</body>
+</html>
