@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<style>
+.block{
+	height:300px;
+	border:1px solid grey;
+	margin:10px 0 20px 0;
+	cursor:pointer;
+	padding:5%;
+	font-size:36px;
+	box-shadow: 0 0 20px rgba(0,0,0,0.5);
+	overflow:hidden;
+}
+#Angular{
+	margin-top:80px;
+}
+#up {
+	width:60px;
+	height:60px;
+	position:fixed;
+	bottom:50px;
+	right:20px;
+	background-color:#000;
+	border-radius:30px; 
+	color:white;
+	text-align:center;
+	font-weight:bold;
+	vertical-align:middle;
+	display:none;
+	padding:0;
+	font-size:16px;
+	cursor:pointer;
+	box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+#up:hover {
+	background-color:#fff;
+	color:black;
+}
+#up p {
+	padding-top:4px;
+}
+.menu{
+	text-align:right;
+	width:100%;
+	cursor:pointer;
+	overflow:hidden;
+	font-weight:bold;
+	height:50px;
+	position:fixed;
+	top:0px;
+	background-color:#000;
+	color:white;
+	margin:0 0 20px -10px;
+}
+ul{
+	float:right;
+}
+li{
+	list-style-type: none;
+	float:left;
+	margin-right:20px;
+}
+li:hover{
+	border-bottom:3px solid green;
+}
+
+</style>
+</head>
+<body>
+	<div class="menu">
+		<ul>
+			<li data-pos="#Angular">AngularJS</li>
+			<li data-pos="#Node">NodeJS</li>
+			<li data-pos="#AMD">AMD</li>
+			<li data-pos="#MEAN">MEAN </li>
+			<li data-pos="#MongoDB">MongoDB</li>
+			<li data-pos="#Express">ExpressJS</li>
+			<li data-pos="#Backbone">BackboneJS</li>
+			<li data-pos="#Git">GIT</li>
+		</ul>
+	</div>
+	<div></div>
+	<div id="up"><p>UP</p></div>
+	<div class="block" id='Angular'>AngularJS Ч JavaScript-фреймворк с открытым исходным кодом. ѕредназначен дл€ разработки одностраничных приложений. ≈го цель Ч расширение браузерных приложений на основе MVC шаблона, а также упрощение тестировани€ и разработки.</div>
+	<div class="block" id='Node'>Node или Node.js Ч программна€ платформа, основанна€ на движке V8 (транслирующем JavaScript в машинный код), превращающа€ JavaScript из узкоспециализированного €зыка в €зык общего назначени€.</div>
+	<div class="block" id='AMD'>Asynchronous module definition (AMD) Ч это подход к разработке на Javascript, который позвол€ет создавать модули таким образом, чтобы они и их зависимости могли быть загружены асинхронно.</div>
+	<div class="block" id='MEAN'>—тек технологий MEAN (MongoDB, Express, AngularJS, Node.js) Ч это современный соперник попул€рного стека LAMP дл€ создани€ профессиональных веб-сайтов</div>
+	<div class="block" id='MongoDB'>MongoDB (от англ. humongous Ч огромный) Ч документо-ориентированна€ система управлени€ базами данных (—”Ѕƒ) с открытым исходным кодом, не требующа€ описани€ схемы таблиц. Ќаписана на €зыке C++.</div>
+	<div class="block" id='Express'>Express.js is a Node.js web application server framework, designed for building single-page, multi-page, and hybrid web applications. It is the de facto standard server framework for node.js.</div>
+	<div class="block" id='Backbone'>Backbone Ч JavaScript-библиотека, основанна€ на шаблоне проектировани€ Model-View-Presenter (MVP), предназначена дл€ разработки веб-приложений с поддержкой RESTful JSON интерфейса.</div>
+	<div class="block" id='Git'>Git (произн. Ђгитї) Ч распределЄнна€ система управлени€ верси€ми.</div>  
+	<script src="js/jquery.min.js"></script>   
+	<script> 
+		$(document).ready(function(){
+			$(window).scroll(function() {
+				if ($(this).scrollTop() > 0) {
+					$('#up').fadeIn();	
+				} else {
+					$('#up').fadeOut();
+				}
+			});
+		
+			$('div').not('#up,.menu').on('click',function(){
+				$("body,html").animate({
+									"scrollTop" : "+=500"
+								 },"slow");
+				$('#up').fadeIn();				 	 
+			})
+			$('#up').on('click',function(){
+				$("body,html").animate({
+									"scrollTop" : 0
+								 },"slow",function(){
+									$('#up').fadeOut();	
+								 });
+			})
+			$('.menu ul li').on('click',function(){
+											var elementClick = $(this).attr("data-pos");
+											var destination = $(elementClick).offset().top;
+											$('body,html').animate({ scrollTop: destination }, 300);
+											return false; 
+										});
+				
+		});
+	</script>
+</body>
+</html>
