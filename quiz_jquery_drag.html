@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<link href="css/style.css" rel="stylesheet">
+   <script>
+  $(function() {
+    $( "#sortable1, #sortable2" ).sortable({
+      connectWith: ".connectedSortable",
+	  cursor: "move",
+	  opacity: 0.5
+    });
+  });
+  </script>
+</head>
+<body>
+<div class="check">
+	<input type="button" value ="Check" id="btn">
+</div>
+<div>
+<h3>Javascript</h3>
+<ul id="sortable1" class="connectedSortable">
+  <li>.querySelector('.nameClass');</li>
+  <li>.getElementsByTagName('li');</li>
+  <li>.bind('click',handle_function);</li>
+  <li>.style.display = 'none';</li>
+  <li>.attr('class')</li>
+  <li>.parentNode.nodeName;</li>
+</ul>
+</div>
+
+<div>
+<h3>jQuery</h3> 
+<ul id="sortable2" class="connectedSortable">
+  <li>.is(':checked');</li>
+  <li>.find('li');</li>
+  <li>.getAttribute('id');</li>
+  <li>.css('color','green');</li>
+  <li>.addEventListener('click',handle_function);</li>
+  <li>.appendChild(newElem);</li>
+</ul>
+</div> 
+<script>
+	$('#btn').on('click',checkAnswer);
+	var arrAnswer = ["LnF1ZXJ5U2VsZWN0b3IoJy5uYW1lQ2xhc3MnKTs=",
+					 "LmdldEVsZW1lbnRzQnlUYWdOYW1lKCdsaScpOw==",
+					 "LnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7",
+					 "LnBhcmVudE5vZGUubm9kZU5hbWU7",
+					 "LmdldEF0dHJpYnV0ZSgnaWQnKTs=",
+					 "LmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJyxoYW5kbGVfZnVuY3Rpb24pOw==",
+					 "LmFwcGVuZENoaWxkKG5ld0VsZW0pOw=="
+					 ];
+	function checkAnswer() {
+		var elemLi = $('#sortable1').find('li');
+		var tempStr = '';
+		if (elemLi.length != 7) {
+			alert('FALSE!');
+			return false;
+		}
+		for (var i = 0; i < elemLi.length; i++) {
+			tempStr = btoa($(elemLi[i]).html());
+			if (arrAnswer.indexOf(tempStr) < 0) {
+				alert('FALSE!');
+				return false;
+			}
+		}
+		EndQuiz();
+	}
+	
+	function EndQuiz() {
+		$('#sortable1').css('display','none');
+		$('#sortable2').css('display','none');
+		$('h3').css('display','none');
+		$('.check').html('');
+		$('.check').addClass('end');
+	}
+</script>
+</body>
+</html>
