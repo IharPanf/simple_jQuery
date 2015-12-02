@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/bootstrap-responsive.css">
+	<style>
+		.container {
+			margin-top:5%;	
+		}
+		.slider, .header{
+			width:1000px;
+			height:400px;
+			text-align:center;
+			padding:2%;
+			display:none;
+		}
+		.slider img {
+			border-radius:25px;
+			cursor:pointer;
+		}
+		.active, .header{
+			display:block;
+		}
+		.header{
+			height:auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<h3>Пример простого слайдера.</h3>
+			<h6>смена изображения по времени (5 сек.)</h6>
+		</div>
+		<div class="slider active">
+			<img src="img/h1_small.jpg">
+		</div>
+		<div class="slider">
+			<img src="img/h2_small.jpg">
+		</div>
+		<div class="slider">
+			<img src="img/v1_small.jpg">
+		</div>
+	</div>
+<script src="../js/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		var changeSlide = setInterval(function() {
+							$(".active").fadeOut(800,function(){
+								$(".slider").removeClass("active");
+								if ($(this).next().hasClass("slider")) {
+									$(this).next().fadeIn(800).addClass("active");
+								} else {
+									$(".slider").eq(0).fadeIn(800).addClass("active");	
+								}	
+							});
+		},5000)
+		$("img").on("click",function(){
+			clearInterval(changeSlide);
+			alert('Animation stop.');
+		});
+	})
+</script>
+</body>
+</html>
