@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<style>
+		.form-group {
+			padding:0px;
+			margin:0px;
+		}
+		.container {
+			margin-top:5%;
+			padding:10px;
+			box-shadow:0 0 10px rgba(0,0,0,0.5);
+			text-align:center;
+		}
+		label{
+			font-weight:bold;
+			margin-right:5px;
+		}
+		.form-control-feedback{
+			position:relative;
+			top:5px;
+			display:inline-block;
+		}
+		.footer {
+			margin-top:5%;
+		}
+		li {
+			list-style-type:none;
+			color:navy;
+		}
+	</style>
+</head>
+<body>
+<div class="container">	
+	<div class="row-fluid">
+		<form class="form-inline" role="form" onsubmit="return checkEmail()">
+			<div class="form-group ">
+				<label  for="curEmail">Email*</label>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+					<input type="email" class="form-control" required="required" id="curEmail" placeholder="Enter email">
+				</div>
+				<span class="glyphicon form-control-feedback"></span>
+				<button type="submit" class="btn btn-primary">Проверить</button>	
+			</div>
+		</form>
+	</div>
+	<div class="row-fluid footer">
+		<hr>
+		<h3>Валидные email:</h3>
+		<hr>
+		<ul>
+			<li>test@mail.ru</li>
+			<li>admin@mail.ru</li>
+			<li>test@yandex.ru</li>
+		</ul>
+	</div>	
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+	function checkEmail() {	
+		$.ajax({
+			type: 'POST',
+			url: 'include/check.php',
+			data: 'email=' + $('#curEmail').val(),
+			success: function(data){
+					$('.form-group').removeClass("has-success has-error");
+					$('.form-control-feedback').removeClass("glyphicon-ok glyphicon-remove");
+					if (data) {
+						$('.form-group').addClass("has-success");
+						$('.form-control-feedback').addClass("glyphicon-ok")
+					} else {
+						$('.form-group').addClass("has-error");
+						$('.form-control-feedback').addClass("glyphicon-remove")
+					}	
+				},
+			error: function(data) {alert('error');},
+			complete:function(data) {}			
+		});
+		return false;
+	}
+	
+	$(document).ready(function(){
+		$("#curEmail").on("keypress",function(){
+			$('.form-group').removeClass("has-success has-error");
+			$('.form-control-feedback').removeClass("glyphicon-ok glyphicon-remove");
+		});
+	});
+</script>		
+</body>
+</html>
