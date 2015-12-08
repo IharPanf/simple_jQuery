@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<style>
+		body {
+			background:#E5E5E5;
+		}
+		.container {
+			margin-top:5%;
+			background:white;
+			padding:50px;
+			text-align:center;
+			box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+		}
+		img {
+			cursor:pointer;
+			margin-right:50px;
+			margin-bottom:10px;
+			box-shadow: 0 0 3px rgba(0,0,0,0.8); 	
+		}
+		.setGrey {
+			-webkit-filter: grayscale(100%);
+			-moz-filter: grayscale(100%);
+			-ms-filter: grayscale(100%);
+			-o-filter: grayscale(100%);
+			filter: grayscale(100%);
+		}
+		.rotate2 {
+			-moz-transform: rotate(45deg); 
+			-ms-transform: rotate(45deg); 
+			-webkit-transform: rotate(45deg);
+			-o-transform: rotate(45deg); 
+			transform: rotate(45deg);
+		}
+		.rotate3 {
+			-moz-transform: rotate(-45deg); 
+			-ms-transform: rotate(-45deg); 
+			-webkit-transform: rotate(-45deg);
+			-o-transform: rotate(-45deg); 
+			transform: rotate(-45deg);
+		}
+		.rotate1 {
+			animation-name: round;
+			animation-duration: 2000ms;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+		}
+		@keyframes round {
+			from {
+				transform:rotate(0deg);
+			}
+			to {
+				transform:rotate(360deg);
+			}
+		}
+		li {
+			list-style-type:none;
+			color:navy;
+		}
+		.legend {
+			margin-top:5%;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h3>Пример работы с изображением используя свойства CSS3</h3>
+		<hr>
+		<img src="img/angular.png">
+		<img src="img/node.png">
+		<img src="img/jquery.png">
+		<hr>	
+		<div class="legend">
+			<ul>
+				<li>При наведении курсора изображение становится черно-белым.</li>
+				<li>Первое изображение поворачивается по часовой стрелке.</li>
+				<li>Второе изображение поворачивается против часовой стрелки.</li>
+				<li>Третье - бесконечное вращение по часовой стрелке.</li>
+			</ul>
+		</div>
+	</div>
+<script src="../js/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('img').bind("mouseover",function(){
+			$(this).addClass("setGrey");
+		});
+		$('img').bind("mouseout",function(){
+			$(this).removeClass("setGrey");
+		});
+		$('img:eq(0)').bind("click",function(){
+			$(this).addClass("rotate2");
+		});
+		$('img:eq(1)').bind("click",function(){
+			$(this).addClass("rotate3");
+		});
+		$('img:eq(2)').bind("click",function(){
+			$(this).addClass("rotate1");
+		});
+	});
+</script>
+</body>
+</html>
