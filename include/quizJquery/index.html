@@ -2,20 +2,19 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<script src="js/jquery.min.js"></script>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../../css/bootstrap.css">
+	<link rel="stylesheet" href="../../css/bootstrap-responsive.css">
+	<script src="../../js/jquery.min.js"></script>
 	<style>
 		.main {
-			border:1px solid grey;
-			width:900px;
-			height:80px;
 			text-align:center;
-			font-size:18pt;
+			font-size:24pt;
 			padding:10px;
 			border-radius: 5px 5px 5px 5px;
+			margin-bottom:2%;
 		}
-		.btn {
-			width:439px;
-			float:left;
+		.span5 {
 			font-size:200%;
 			font-weight:bold;
 			text-align:center;
@@ -25,12 +24,11 @@
 			margin:10px 0px 0px 0px;
 			border-radius: 20px 20px 20px 20px;
 		}
-		.btn:last-child {
-			margin-left:20px;
+		.span5:last-child {
 			background: #000;
 			color:white;
 		}
-		.btn:hover{
+		.span5:hover{
 			background:#FF8716;
 		}
 		.code {
@@ -44,23 +42,48 @@
 			border:1px solid #007F0E;
 			background:#4CFF00;
 		}
+		.container{
+			margin-top:5%;
+			margin-bottom:5%;
+			padding:10px;
+			padding-left:40px;
+			text-align:center;
+			background:white;
+			box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+		}
+		.row {
+			padding:10px;
+		}
+		body {
+			background:#E5E5E5;
+		}
+		.title{
+			margin-bottom:1%;
+			text-align:center;
+		}
 	</style>
 </head>
 <body>
-<div class="main">
-	texttext
-</div>
-<div>
-	<div class="btn">Yes</div>
-	<div class="btn">No</div>
-</div>
+<div class="container">
+	<div class="row title">	
+		<h3>Тест на знание jQuery</h3>
+	</div>	
+	<div class=" row main">
+		texttext
+	</div>
+	<div class="row">
+		<div class="span5">Yes</div>
+		<div class="span2"></div>
+		<div class="span5">No</div>
+	</div>
+</div>	
 <script>	
  $(document).ready(function(){
 	var i = 0,
 	    answer,
 		correct = 0;
 	$('.main').html(arrQuest[i]);
-	$('.btn').on('click',function(){
+	$('.span5').on('click',function(){
 		answer = $(this).text() == 'Yes' ? 1 : 0; 
 		if (answer != correctAnsver[i]) {
 			$('.main').addClass('error');
@@ -68,17 +91,17 @@
 			$('.main').addClass('correct');
 			correct++;
 		}
-		$('.btn').hide();
+		$('.span5').hide();
 		$('.main').fadeOut(1000,function(){
 			if (i < 19 ) {
 				$('.main').html(arrQuest[++i]).removeClass().addClass('main').show();
-				$('.btn').show();
+				$('.span5').show();
 			} else {
 				$('.main').html('Правильных ответов: '+ correct +' из 20.').removeClass().addClass('main code');
 				if (correct > 18) {
 					$('.main').addClass('correct').show();
 					setTimeout(function(){
-						$('.main').html(largeStr).css('height','auto');
+						$('.main').html("<h1>Хорошего кода!</h1>").css('height','auto');
 					},2000);
 				} else {
 					$('.main').addClass('error').show();
@@ -118,10 +141,7 @@
 				 'Функция <b class="code">stop()</b> позволяет остановить текущую анимацию, а так же почистить очередь анимации.',
 				 'Метод: <b class="code">before(content)</b> вставляет контент перед первым элементом из выборки.',
 				 'Методы: <b class="code">append(content)</b> и <b class="code">appendTo(element)</b> выполняют одинаковое действие (вставляют контент в конец каждого элемента из выборки).',
-				 'Метод: <b class="code">clone(withDataAndEvents)</b> клонирует выбранные элементы, для дальнейшей вставки копий назад в DOM.']
-				 
-
-var largeStr  =	'Храму был нужен новый монах, и два потенциальных адепта претендовали на это место. Мастер велел монаху провести собеседование с обоими. В тот же вечер монах доложил: «Они были полностью равны во всех отношениях — возраст, вес, внешность, манеры, обращение с мечом и предпочтения относительно кофеиносодержащих напитков. Тогда я дал им одну и ту же логическую задачу; один из них решил ее, второй — нет.»Тогда мастер велел монаху отвести его в комнаты, где проводились собеседования. Вначале они отправились в комнату кандидата, который не справился с задачей. На доске еще оставались его наброски к задаче: болезненно аккуратные цифры выстроились в ровные строчки и столбики. Мастер быстро нашел ошибку в рассуждениях кандидата и сказал «Вот ростки гороха, пытающиеся пробиться через зимний снег. Если мы взрастим их, весной у нас будет славный обед.»Затем они перешли в комнату кандидата, который решил задачу. Его записи тоже оставались на доске, расползаясь по ней без заметного порядка. Поспешно нацарапанные каракули вились зигзагами, иногда наползая друг на друга — паутина ахинеи. Мастер покачал головой: «Ты говоришь, что здесь душистый укроп и лимонная трава, но я не могу найти их среди сорняков.»';				 
+				 'Метод: <b class="code">clone(withDataAndEvents)</b> клонирует выбранные элементы, для дальнейшей вставки копий назад в DOM.']	 
 </script>	
 </body>
 </html>

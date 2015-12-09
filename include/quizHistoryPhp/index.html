@@ -2,13 +2,16 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="../css/bootstrap.css">
-	<link rel="stylesheet" href="../css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="../../css/bootstrap.css">
+	<link rel="stylesheet" href="../../css/bootstrap-responsive.css">
 	<style>
 		.container{
 			margin-top:5%;
 			margin-bottom:5%;
 			text-align:center;
+			background:white;
+			padding:20px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.5); 
 		}
 		.block {
 			width:50%;
@@ -32,6 +35,7 @@
 			cursor:pointer;
 			padding:5px;
 			width:40%;
+			margin-left:5%;
 		}
 		.error{
 			background:red;
@@ -45,14 +49,17 @@
 		.end {
 			text-align:center;
 		}
-		.header {
+		.title {
 			margin-bottom:30px;
+		}
+		body {
+			background:#E5E5E5;
 		}
 </style>	
 </head>
 <body>
 	<div class="container">
-		<div class="row header">
+		<div class="row title">
 			<h2>Несколько вопросов об истории PHP.</h2>
 			<small>(перетягиваем черный прямоугольник на соответствующую версию php)</small>
 		</div>
@@ -71,7 +78,7 @@
 			</div>
 		</div>
 	</div>
-<script src="../js/jquery.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>	
 <script src="js/custom.js"></script>	
 <script>

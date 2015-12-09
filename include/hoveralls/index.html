@@ -3,12 +3,14 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/jquery-hoveralls-2.6.min.css">
-	<script src="../js/jquery.min.js"></script>
+	<script src="../../js/jquery.min.js"></script>
 	<script src="js/jquery.hoveralls-2.6.min.js"></script>	
 	<style>
 		.container{
 			margin:10%;
-			text=align:center;
+			text-align:center;
+			background:white;
+			box-shadow: 0 0 10px rgba(0,0,0,0.5); 
 		}
 		.panel {
 			width:100%;
@@ -62,16 +64,101 @@
 			font-size:24px;
 		}
 		.desciption {
-			width:50%;
-			margin-left:20%;
+			margin-top:1%;
+			text-align:center;
+			color:navy
 		}
 		li {
 			list-style-type:none;
 			font-style:italic;
 		}
+		body {
+			background:#E5E5E5;
+		}
+		.row {
+			padding:50px;
+		}
+		.title{
+			margin-bottom:1%;
+			text-align:center;
+		}
 	</style>
 </head>
 <body>
+	<div class="container">
+		<div class="row title">	
+			<h3>Пример работы с библиотекой HoverAlls</h3>
+		</div>	
+		<div class="row">
+			<div class="span3 Effect_Container">
+				<img src="img/angular.png" class="HoverAlls_Panel" alt="Верхняя панель <br><span class='text'>(открывается по клику)</span>" rel="#"
+					data-HoverAlls='{
+						"target_container":"panel",
+						"on_click" :true,
+                        "on_start" : false,
+						"start_delay" : 1000 
+					}' 
+				/>
+			</div>
+			<div class="span3 Effect_Container">
+				<img src="img/jquery.png" class="HoverAlls_Panel" alt="" rel="#"
+					data-HoverAlls='{
+						"coords":"0,100||0,80||0,100",                
+						"text_coords":"15,100||15,5||15,100",               
+						"target_container":"panel2",
+						"on_click" : false,
+						"html_mode" : "#bottom_panel_Content",
+						"on_start" : false,
+						"start_delay" : 1000       
+					}' 
+				/>
+			</div>	
+			<div class="span3 Effect_Container">
+				<img src="img/js.png" class="HoverAlls_Panel" alt="" rel="#"
+					data-HoverAlls='{
+						"coords":"100,100||0,0||100,100",                				             
+						"target_container":"panel3",
+						"on_click" : true,
+						"on_start" : false,
+						"html_mode" : "#left_panel_content",
+						"start_delay" : 2000       
+					}' 
+				/>
+			</div>
+			<div class="span3 Effect_Container">
+				<img src="img/node.png" id="cap1" alt="Текст для отдельного блока" rel="#"
+					data-HoverAlls='{
+						"on_click" : false,
+						"coords":"0,100||0,0||0,100",
+						"text_coords" :"0,100||0,15||0,100", 
+						"on_start"    : false,
+						"text_class"  :"captionText",
+						"start_delay" : 8000       
+					}' 
+				/>
+			</div>
+			<div style="clear:both"></div>	
+			<div class="desciption">
+				<h3>Описание:</h3>
+				<ul>
+					<li>Клик на первый рисунок - открывается(закрывается) верхняя панель.</li>
+					<li>Курсор над вторым рисуноком - открывается нижняя панель.</li>
+					<li>Клик на трейтий рисунок - открывается панель на всю ширину экрана.</li>
+					<li>Курсор над четвертым рисуноком - открывается панель внутри заданного блока.</li>
+				</ul>
+			</div>
+		</div>	
+		<div id="bottom_panel_Content">
+			<p>
+	            <span class="title">Нижняя панель</span><br>
+    	        <span class="text">Открывается принаведении</span>
+            </p>
+        </div> 
+		<div id="left_panel_content">
+			<h3>На всю ширину окна.</h3>
+			<a href="#" class="close_panel">Закрыть</a>
+		</div>
+	</div>
 	<script>
 		$(document).ready(function(){
 			$('.HoverAlls_Panel').HoverAlls({
@@ -91,76 +178,6 @@
 				text_class:"captionText"
 			});
 		});
-	</script>
-	<div class="container">
-		<div class="span3 Effect_Container">
-			<img src="img/angular.png" class="HoverAlls_Panel" alt="Верхняя панель <br><span class='text'>(открывается по клику)</span>" rel="#"
-					data-HoverAlls='{
-						"target_container":"panel",
-						"on_click" :true,
-                        "on_start" : false,
-						"start_delay" : 1000 
-					}' 
-			/>
-		</div>
-		<div class="span3 Effect_Container">
-			<img src="img/jquery.png" class="HoverAlls_Panel" alt="" rel="#"
-					data-HoverAlls='{
-						"coords":"0,100||0,80||0,100",                
-						"text_coords":"15,100||15,5||15,100",               
-						"target_container":"panel2",
-						"on_click" : false,
-						"html_mode" : "#bottom_panel_Content",
-						"on_start" : false,
-						"start_delay" : 1000       
-					}' 
-			/>
-		</div>	
-		<div class="span3 Effect_Container">
-			<img src="img/js.png" class="HoverAlls_Panel" alt="" rel="#"
-					data-HoverAlls='{
-						"coords":"100,100||0,0||100,100",                				             
-						"target_container":"panel3",
-						"on_click" : true,
-						"on_start" : false,
-						"html_mode" : "#left_panel_content",
-						"start_delay" : 2000       
-					}' 
-			/>
-		</div>
-		<div class="span3 Effect_Container">
-			<img src="img/node.png" id="cap1" alt="Текст для отдельного блока" rel="#"
-				data-HoverAlls='{
-						"on_click" : false,
-						"coords":"0,100||0,0||0,100",
-						"text_coords" :"0,100||0,15||0,100", 
-						"on_start"    : false,
-						"text_class"  :"captionText",
-						"start_delay" : 8000       
-					}' 
-			/>
-		</div>	
-		<div class="desciption">
-			<h3>Описание:</h3>
-			<ul>
-				<li>Клик на первый рисунок - открывается(закрывается) верхняя панель.</li>
-				<li>Курсор над вторым рисуноком - открывается нижняя панель.</li>
-				<li>Клик на трейтий рисунок - открывается панель на всю ширину экрана.</li>
-				<li>Курсор над четвертым рисуноком - открывается панель внутри заданного блока.</li>
-			</ul>
-		</div>
-		<div id="bottom_panel_Content">
-			<p>
-	            <span class="title">Нижняя панель</span><br>
-    	        <span class="text">Открывается принаведении</span>
-            </p>
-        </div> 
-		<div id="left_panel_content">
-			<h3>На всю ширину окна.</h3>
-			<a href="#" class="close_panel">Закрыть</a>
-		</div>
-	</div>
-
 	</script>
 </body>
 </html>

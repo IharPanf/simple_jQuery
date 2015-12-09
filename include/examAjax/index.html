@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
 	<style>
 		.form-group {
 			padding:0px;
@@ -13,6 +13,7 @@
 			padding:10px;
 			box-shadow:0 0 10px rgba(0,0,0,0.5);
 			text-align:center;
+			background:white;
 		}
 		label{
 			font-weight:bold;
@@ -21,6 +22,7 @@
 		.form-control-feedback{
 			position:relative;
 			top:5px;
+			right:3px;
 			display:inline-block;
 		}
 		.footer {
@@ -30,14 +32,28 @@
 			list-style-type:none;
 			color:navy;
 		}
+		body {
+			background:#E5E5E5;
+		}
+		.input-group{
+			width:85%;
+			float:left;
+			margin-left:15px;
+		}
+		.title{
+			margin-bottom:5%;
+			text-align:center;
+		}
 	</style>
 </head>
 <body>
-<div class="container">	
+<div class="container">
+	<div class="row title">	
+		<h3>Пример валидации email на стороне сервера.</h3>
+	</div>	
 	<div class="row-fluid">
 		<form class="form-inline" role="form" onsubmit="return checkEmail()">
 			<div class="form-group ">
-				<label  for="curEmail">Email*</label>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 					<input type="email" class="form-control" required="required" id="curEmail" placeholder="Enter email">
@@ -58,8 +74,8 @@
 		</ul>
 	</div>	
 </div>
-<script src="../js/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
 <script>
 	function checkEmail() {	
 		$.ajax({
