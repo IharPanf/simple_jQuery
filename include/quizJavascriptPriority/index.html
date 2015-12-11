@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<style>
+		.container{
+			margin-top:1%;
+			margin-bottom:5%;
+			text-align:center;
+			background:white;
+			padding:20px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+		}
+		.num {
+			width:5%;
+			float:left;
+			background:black;
+			color:white;
+			padding:5px;
+		}
+		.content{
+
+			padding:5px 0px 5px 5px;;
+		}
+		.row{
+			margin:10px;
+			border:1px solid grey;
+			font-size:18px;
+			cursor:pointer;
+		}
+		.content:hover {
+			background:#FFA947;
+		}
+		.caption {
+			margin-top:5%;
+		}
+		body {
+			background:#E5E5E5;
+		}
+		.btncheck {
+			width:50px;
+			height:50px;
+			position:fixed;
+			right:10%;
+			top:27%;
+		}
+		.quiz{
+			color:black;
+		}
+	</style>
+</head>
+<body>
+	<div class="container caption">
+		<h2>Тест: приоритеты операторов javascript (по возврастанию)</h2>
+	</div>
+	<div class="container" id="sortable">
+		<div class="row"><div class="num quiz">10</div><div class="content">Strict Equality:    <span>… === …</span></div></div>		
+		<div class="row"><div class="num">18</div><div class="content">Computed Member Access:    <span>… [ … ]</span></div></div>	
+		<div class="row"><div class="num">2</div><div class="content">yield :    <span>yield …</span></div></div>
+		<div class="row"><div class="num quiz">3</div><div class="content">Присваивание :    <span>… = …</span></div></div>
+		<div class="row"><div class="num">8</div><div class="content">Побитовое иключающее «ИЛИ» :    <span>… ^ …</span></div></div>
+		<div class="row"><div class="num">5</div><div class="content">Логическое «ИЛИ» :    <span>… || …</span></div></div>
+		<div class="row"><div class="num quiz">0</div><div class="content">Comma / Sequence :   <span> … , …</span></div></div>		
+		<div class="row"><div class="num quiz">6</div><div class="content">Логическое «И» :    <span>… && …</span></div></div>
+		<div class="row"><div class="num  quiz">16</div><div class="content">Postfix Increment :    <span>… ++</span></div></div>	
+		<div class="row"><div class="num quiz">10</div><div class="content">Equality:    <span>… == …</span></div></div>
+		<div class="row"><div class="num quiz">9</div><div class="content">Побитовое «И» :    <span>… & …</span></div></div>	
+		<div class="row"><div class="num quiz">13</div><div class="content">Сложение :    <span>… + …</span></div></div>
+		<div class="row"><div class="num">1</div><div class="content">Spread :    <span>... …</span></div></div>		
+		<div class="row"><div class="num">10</div><div class="content">Inequality:    <span>… != …</span></div></div>
+		<div class="row"><div class="num">7</div><div class="content">Побитовое «ИЛИ»:    <span>… | …</span></div></div>	
+		<div class="row"><div class="num quiz">11</div><div class="content">Меньше :    <span>… < …</span></div></div>
+		<div class="row"><div class="num">15</div><div class="content">Унарный плюс :    <span>+ …</span></div></div>	
+		<div class="row"><div class="num quiz">11</div><div class="content">instanceof :    <span>… instanceof …</span></div></div>	
+		<div class="row"><div class="num">12</div><div class="content">Bitwise Left Shift :    <span>… << …</span></div></div>
+		<div class="row"><div class="num quiz">4</div><div class="content">Conditional :    <span>… ? … : …</span></div></div>		
+		<div class="row"><div class="num">11</div><div class="content">in :    <span>… in …</span></div></div>
+		<div class="row"><div class="num">14</div><div class="content">Умножение:    <span>… * …</span></div></div>		
+		<div class="row"><div class="num">17</div><div class="content">Function Call:    <span>… ( … )</span></div></div>		
+		<div class="row"><div class="num quiz">15</div><div class="content">typeof :    <span>typeof …</span></div></div>
+		<div class="row"><div class="num  quiz">19</div><div class="content">Grouping:    <span>( … )</span></div></div>				
+	</div>
+	<div class="btncheck">
+		<button class="btn btn-success">Проверить</button>
+	</div>
+<script src="../../js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>	
+<script>
+  $(function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  
+	$(".btn").on("click",function(){
+		var arrAnswer = [];
+		$(".num").each(function(){
+			arrAnswer.push(+$(this).text());
+		})
+		var flCorrect = true;
+		for (var i = 1; i < arrAnswer.length; i++) {
+			if (arrAnswer[i] < arrAnswer[i-1]) {
+				flCorrect = false;
+				break;
+			}
+		}
+		if (flCorrect) {
+			alert('Все правильно!!!');
+		} else {
+			alert('Неверно.');
+		}
+		//console.log(arrAnswer);
+	});
+  });
+	
+</script>	
+</body>
+</html>
