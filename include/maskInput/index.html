@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="../../js/jquery.min.js"></script>
+	<script src="js/jquery.mask.js"></script>
+</head>
+<body>
+<input type="text" value="99999999999" class="phone">
+<input type="text" value="99999999999" class="phone">
+<input type="button" value="add" id="btn">
+<script>	
+ $(document).ready(function(){
+	$('.phone').mask('+0(000)-000-00-00');
+	
+	$('#btn').on('click', function(){
+		$('body').append('<input type="text" value="99999999999" class="phone">');
+	});
+});
+</script>	
+</body>
+</html>
